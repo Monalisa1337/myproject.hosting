@@ -1,0 +1,65 @@
+.background {
+
+    background-image: url("../assets/img/bg.jpg");
+    height:62rem;
+    z-index: -1;
+}
+
+.on-background {
+
+    background-color: rgba(0,0,0,.5);
+    height: inherit;
+}
+
+.my-nav {
+    padding:1rem;
+   width:100%;
+   display: flex;
+}
+
+.logged-in {
+    color:white;
+    font-family: sans-serif;
+    font-size: 1.5rem;
+}
+
+.svg-icon-netflix-logo {
+    text-decoration: none;
+    vertical-align: middle;
+    fill: #E50914;
+    display: inline-block;
+    line-height: 90px;
+    height: 45px;
+    width: 167px;
+}
+
+.my-form-container{
+    width:500px;
+    background-color: rgba(0,0,0,.75);
+    border-radius: .5rem;
+    color:white;
+}
+
+@media only screen and (max-width: 600px) {
+    .my-form-container{
+        width:20rem;
+        background-color: rgba(0,0,0,.75);
+        border-radius: .5rem;
+        color:white;
+    }
+
+    .background {
+        height: 55rem;   
+    }
+  }
+  @media only screen and (max-width: 380px) {
+    .my-form-container{
+        width:20rem;
+       
+    }
+  }
+
+app-stepper-form {
+    background-color: red !important;
+   
+}

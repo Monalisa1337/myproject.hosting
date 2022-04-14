@@ -1,0 +1,20 @@
+<div style="text-align: center; padding:1rem;">
+    <div *ngIf="!finished" class="b-4">
+        <div class="alert " role="alert">
+            {{ 'Finish.verifyng' | translate}}
+          </div>
+        <div class="spinner-border text-success" role="status">
+
+        </div>
+    </div>
+
+    <div *ngIf="finished" class="b-4">
+        <div class="alert " role="alert">
+            {{ 'Finish.congrats' | translate}}
+        </div>
+        <i class="fa fa-check-circle my-icon text-success"></i>
+
+        <span class="my-span">   {{ 'Finish.redirect' | translate}}</span>
+    </div>
+
+</div>

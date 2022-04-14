@@ -1,0 +1,68 @@
+.login-form {
+    font-family: sans-serif;
+    padding-top:2rem;
+    padding-bottom: 2rem;
+    
+}
+
+h1 {
+    color: #fff;
+    font-size: 23px;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+.my-fa {
+    font-size: 1.7rem;
+    margin-right:.3rem;
+    margin-top:1rem;
+    margin-bottom: 5px;
+}
+
+.my-btn{
+    color:white;
+    background-color:#E50914;
+    width:100%;
+}
+
+.my-input {
+   background-color:#737373;
+   color:white;
+   border:none;
+}
+
+::placeholder {
+    color: #b3b3b3;
+}
+
+.remember-me-label {
+    color: #b3b3b3;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+input[type=checkbox] {
+    background: #737373;
+    border-radius: 2px;
+    border: 0;
+    height: 16px;
+    width: 16px;
+}
+
+:host {
+    width:70%;
+}
+
+.my-form-group {
+    position: relative;
+}
+
+
+.input-car {
+    position: absolute;
+    top: 6px;
+    left:6px;
+}
+.input-car:hover {
+    cursor:text;
+}

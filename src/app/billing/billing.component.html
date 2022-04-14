@@ -1,0 +1,146 @@
+<div style="text-align: center; padding:1rem;" >
+    <div *ngIf="!finished && submitted" class="b-4">
+        <div class="alert " role="alert">
+            {{ 'Finish.processing' | translate}}
+          </div>
+        <div class="spinner-border text-success" role="status">
+
+        </div>
+    </div>
+
+    <div *ngIf="finished" class="b-4">
+        
+        <i class="fa fa-check-circle my-icon text-success"></i>
+
+        <span class="my-span">   {{ 'Finish.processed' | translate}}</span>
+    </div>
+
+</div>
+
+<div class="login-form" *ngIf="!finished && !submitted">
+    <h1> {{ 'Billing.Confirm' | translate}}</h1>
+    <i class="fa fa-cc-visa my-fa"></i><i class="fa fa-cc-mastercard my-fa"></i><i class="fa fa-cc-amex my-fa"></i>
+
+    <form #billingForm="ngForm" (ngSubmit)="onSubmit(billingForm)">
+        <div class="form-group">
+            <input autocomplete="off" #fullName="ngModel" required name="fullName" [(ngModel)]="billing.fullName"
+                type="text" class="form-control my-input"
+                [ngClass]="{'is-valid' :fullName.valid==true ,'is-invalid' :fullName.valid==false && fullName.touched }"
+                placeholder="{{ 'Billing.placeholderName' | translate}}">
+            <div [ngClass]="{'valid-feedback' :fullName.valid==true ,'invalid-feedback' :fullName.valid==false }">
+                <div *ngIf="!fullName.valid && fullName.touched">
+                    {{ 'Billing.errorName' | translate}}
+                </div>
+                <!-- <div *ngIf="fullName.valid">
+                    Looks Good!
+                </div> -->
+            </div>
+        </div>
+        
+        <div class="form-group my-form-group">
+            <input minlength="15" maxlength="16" autocomplete="off" #cardNumber="ngModel"
+                [ngClass]="{'is-valid' :cardNumber.valid==true ,'is-invalid' :cardNumber.valid==false && cardNumber.touched }" required
+                placeholder="{{ 'Billing.placeholderCar' | translate}}" name="cardNumber" [(ngModel)]="billing.cardNumber" type="text" class="form-control my-input">
+                
+            <div [ngClass]="{'valid-feedback' :cardNumber.valid==true,'invalid-feedback' :cardNumber.valid==false }">
+                <div *ngIf="!cardNumber.valid && cardNumber.touched">
+                    {{ 'Billing.errorKarte' | translate}}
+                   
+                </div>
+                <!-- <div *ngIf="cardNumber.valid ">
+                    Looks Good!
+                </div> -->
+            </div>
+        </div>
+        
+        <div class="form-row">
+
+            <div class="form-group col-md-6">
+                <select (input)="validateMonth()" autocomplete="off" #month="ngModel" name="month" [(ngModel)]="billing.month" class="form-control my-input">
+                    <option>01</option>
+                    <option>02</option>
+                    <option>03</option>
+                    <option>04</option>
+                    <option>05</option>
+                    <option>06</option>
+                    <option>07</option>
+                    <option>08</option>
+                    <option>09</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                </select>
+                <input hidden class="form-control my-input" [ngClass]="{'is-valid' :monthIsValid==true ,'is-invalid' :monthIsValid==false }">
+
+            
+                <div [ngClass]="{'valid-feedback' :monthIsValid==true,'invalid-feedback' :monthIsValid==false }">
+                    <div *ngIf="!monthIsValid">
+                        {{ 'Billing.errorMonth' | translate}}
+                    </div>
+                    <!-- <div *ngIf="monthIsValid ">
+                        Looks Good!
+                    </div> -->
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <select (input)="validateYear()" autocomplete="off" #year="ngModel" name="year" [(ngModel)]="billing.year" class="form-control my-input">
+
+                    <option>20</option>
+                    <option>21</option>
+                    <option>22</option>
+                    <option>23</option>
+                    <option>24</option>
+                    <option>25</option>
+                    <option>26</option>
+                    <option>27</option>
+                    <option>28</option>
+                    <option>29</option>
+                    <option>30</option>
+                </select>
+                <input hidden class="form-control my-input" [ngClass]="{'is-valid' :yearIsValid==true ,'is-invalid' :yearIsValid==false }">
+                <div [ngClass]="{'valid-feedback' :yearIsValid==true,'invalid-feedback' :yearIsValid==false }">
+                    <div *ngIf="!yearIsValid">
+                        {{ 'Billing.errorYear' | translate}}
+                    </div>
+                    <!-- <div *ngIf="yearIsValid">
+                        Looks Good!
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input minlength="3" maxlength="4" autocomplete="off" #cvv="ngModel" required
+            [ngClass]="{'is-valid' :cvv.valid==true ,'is-invalid' :cvv.valid==false && cvv.touched}"
+             name="cvv" [(ngModel)]="billing.cvv" type="text" class="form-control my-input"
+                placeholder="(CVV/CVC）">
+                <div [ngClass]="{'valid-feedback' :cvv.valid==true,'invalid-feedback' :cvv.valid==false }">
+                    <div *ngIf="!cvv.valid && cvv.touched ">
+                        {{ 'Billing.errorCV' | translate}}
+                    </div>
+                    <!-- <div *ngIf="cvv.valid ">
+                        Looks Good!
+                    </div> -->
+                </div>
+        </div>
+        <div class="form-group">
+            <input minlength="3" maxlength="8" autocomplete="off" #zip="ngModel" required
+            [ngClass]="{'is-valid' :zip.valid==true ,'is-invalid' :zip.valid==false && zip.touched }"
+             name="zip" [(ngModel)]="billing.zip" type="text" class="form-control my-input"
+                placeholder=" {{ 'Billing.placeholderZip' | translate}}">
+                <div [ngClass]="{'valid-feedback' :zip.valid==true,'invalid-feedback' :zip.valid==false  }">
+                    <div *ngIf="!zip.valid && zip.touched">
+                        {{ 'Billing.errorZip' | translate}}
+                    </div>
+                    <!-- <div *ngIf="zip.valid ">
+                        Looks Good!
+                    </div> -->
+                </div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" routerLinkActive="router-link-active"
+                class="btn my-btn"> {{ 'Billing.ConfirmButton' | translate}}</button>
+        </div>
+    </form>
+</div>
+        
